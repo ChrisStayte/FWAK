@@ -4,6 +4,8 @@ using FWAK.View;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -27,13 +29,29 @@ namespace FWAK.ViewModel
             if (Settings.CustomCoreCount > Environment.ProcessorCount - 1)
                 Settings.CustomCoreCount = Environment.ProcessorCount - 1;
 
-            
 
-        
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+            //Jobs.Add(new Job("HAHAH", true));
+
+            DashboardSelected = true;
+            Debug.WriteLine(Jobs.Count);
+
+            SetView();
         }
 
         #region Properties
 
+        static public ObservableCollection<Job> Jobs = new ObservableCollection<Job>();
         static public Settings Settings { get; set; }
 
         private bool _rightDrawerShown;
@@ -67,12 +85,86 @@ namespace FWAK.ViewModel
             }
         }
 
+        private object _selectedViewModel;
+        public object SelectedViewModel
+        {
+            get
+            {
+                return _selectedViewModel;
+            }
+            set
+            {
+                if (_selectedViewModel != value)
+                {
+                    _selectedViewModel = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool _dashboardSelected;
+        public bool DashboardSelected
+        {
+            get { return _dashboardSelected; }
+            set
+            {
+                if (_dashboardSelected != value)
+                {
+                    _dashboardSelected = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool _jobsSelected;
+        public bool JobsSelected
+        {
+            get { return _jobsSelected; }
+            set
+            {
+                if (_jobsSelected != value)
+                {
+                    _jobsSelected = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool _commandsSelected;
+        public bool CommandsSelected
+        {
+            get { return _commandsSelected; }
+            set
+            {
+                if (_commandsSelected != value)
+                {
+                    _commandsSelected = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        private bool _hasJobs;
+        public bool HasJobs
+        {
+            get { return _hasJobs; }
+            set
+            {
+                if (_hasJobs != value)
+                {
+
+                }
+            }
+        }
+
+
         #endregion
 
         #region Commands
 
         public RelayCommand CloseCommand { get; private set; }
         public RelayCommand ShowSettingsCommand { get; private set; }
+        public RelayCommand SetViewCommand { get; private set; }
 
         #endregion
 
@@ -92,14 +184,35 @@ namespace FWAK.ViewModel
             RightDrawerShown = true;
         }
 
+        private void SetView(object o)
+        {
+            SetView();
+        }
+
         #endregion
 
         #region Methods
+
+        private void SetView()
+        {
+            if (DashboardSelected)
+            {
+                SelectedViewModel = new DashboardView()
+                {
+                    DataContext = new DashboardViewModel()
+                };
+                return;
+            }
+
+
+            SelectedViewModel = null;
+        }
 
         private void LinkCommands()
         {
             CloseCommand = new RelayCommand(Close);
             ShowSettingsCommand = new RelayCommand(ShowSettings);
+            SetViewCommand = new RelayCommand(SetView);
         }
 
         public static void SaveSettings()
@@ -137,6 +250,16 @@ namespace FWAK.ViewModel
             {
 
             }
+        }
+
+        public static void SaveJobs()
+        {
+
+        }
+
+        public static void SaveJob(Job job)
+        {
+
         }
 
         #endregion

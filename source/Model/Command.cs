@@ -19,6 +19,7 @@ namespace FWAK.Model
 
         private string _commandLine;
         private List<string> libraries;
+
             
         // setters and getters
 

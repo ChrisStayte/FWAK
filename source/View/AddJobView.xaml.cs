@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FWAK
+namespace FWAK.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddJobView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddJobView : UserControl
     {
-        public MainWindow()
+        public AddJobView()
         {
             InitializeComponent();
         }
