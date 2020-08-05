@@ -30,18 +30,18 @@ namespace FWAK.ViewModel
                 Settings.CustomCoreCount = Environment.ProcessorCount - 1;
 
 
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
-            //Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
+            Jobs.Add(new Job("HAHAH", true));
 
             DashboardSelected = true;
             Debug.WriteLine(Jobs.Count);

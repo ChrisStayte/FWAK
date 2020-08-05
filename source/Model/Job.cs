@@ -20,11 +20,34 @@ namespace FWAK.Model
 
         // private
         private string _name;
+        private Guid _guid;
+        private string _watchFolder;
+        private string _outputFolder;
+        private Command _command;
         private bool _pin;
-        private bool _run;
+        private bool _running;
         private string _simpleLog;
+        private List<Task> _tasks;
+        private bool _watchMode;
+        private bool _processExisting;
+        private List<string> _libraries;
+        private DateTime _created;
+        private DateTime _started;
+        private List<Tuple<DateTime, DateTime>> _runtimeHistory;
+        private double _largestFileSize;
+        private double _smallestFileSize;
+        private double _averageFileSize;
+        private double _longestFileRuntime;
+        private double _shortestFileRuntime;
+        private double _averageFileRuntime;
+        private int _successfullCount;
+        private int _failureCount;
 
         //public
+
+        /// <summary>
+        /// Name Of The Job
+        /// </summary>
         public string Name
         {
             get { return _name; }
@@ -37,6 +60,23 @@ namespace FWAK.Model
                 }
             }
         }
+
+        public Guid GUID
+        {
+           get { return _guid; }
+            set
+            {
+                if (_guid != value)
+                {
+                    _guid = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Pin Job To Dashboard
+        /// </summary>
         public bool Pin
         {
             get { return _pin; }
@@ -49,14 +89,18 @@ namespace FWAK.Model
                 }
             }
         }
-        public bool Run
+
+        /// <summary>
+        /// Is Job Running
+        /// </summary>
+        public bool Running
         {
-            get { return _run; }
+            get { return _running; }
             set
             {
-                if (_run != value)
+                if (_running != value)
                 {
-                    _run = value;
+                    _running = value;
                     NotifyPropertyChanged();
                 }
             }
